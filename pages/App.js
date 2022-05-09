@@ -1,3 +1,5 @@
+import SearchInput from "../components/SearchInput";
+
 const App = ({ $target }) => {
   this.state = {
     fetchedLangs: [],
@@ -8,6 +10,11 @@ const App = ({ $target }) => {
   this.setState = (nextState) => {
     // 구현
   };
+
+  const searchInput = new SearchInput({
+    $target,
+    initialState: "",
+  });
 };
 
 export default App;
