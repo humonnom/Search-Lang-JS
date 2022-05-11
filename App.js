@@ -8,6 +8,7 @@ export default function App({ $target }) {
     languages: [],
     index: 0,
     items: [],
+    inputValue: "",
   };
 
   this.setState = (nextState) => {
@@ -16,18 +17,31 @@ export default function App({ $target }) {
       ...nextState,
     };
     // update suggestion
-    suggestion.setState({ items: this.state.items, index: this.state.index });
+    selected.setState({ langs: this.state.languages });
+    suggestion.setState({
+      items: this.state.items,
+      index: this.state.index,
+      inputValue: this.state.inputValue,
+    });
   };
-  const languages = new SelectedLanguages({ $target });
+  const selected = new SelectedLanguages({ $target });
   const input = new SearchInput({
     $target,
     onClick: async (value) => {
-      // console.log(value);
       if (value.length > 0) {
         const items = await getData(value);
-        this.setState({ items });
+        this.setState({ items, inputValue: value });
       }
     },
   });
-  const suggestion = new Suggestion({ $target });
+  const suggestion = new Suggestion({
+    $target,
+    onSelect: (index) => {
+      const target = this.state.items[index];
+      const currentItems = this.state.languages;
+      if (target && !currentItems.includes(target)) {
+        this.setState({ languages: [...currentItems, target] });
+      }
+    },
+  });
 }
