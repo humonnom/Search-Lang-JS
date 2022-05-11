@@ -12,20 +12,24 @@ export default function SelectedLanguages({ $target }) {
       ...this.state,
       ...nextState,
     };
+    if (this.state.langs.length > 5) {
+      this.state.langs.shift();
+    }
     this.render();
   };
 
   this.render = () => {
-    // console.log("SelectedLanguages");
-    console.log(this.state.langs);
+    // console.log(this.state.langs);
     const list = this.state.langs;
-    this.$element.innerHTML = `<ul>
+    if (list.length > 0) {
+      this.$element.innerHTML = `<ul>
       ${list
         .map((e) => {
           return `<li>${e}</li>`;
         })
         .join("")}
     </ul>`;
+    }
   };
 
   this.render();

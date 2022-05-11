@@ -27,15 +27,15 @@
   - [x] 커서이동 구현
   - [x] 클릭시 선택 구현
   - [x] 엔터 입력시 선택 구현
-  - [ ] 선택된 언어가 1개 이상이면 SelectedLanguages 띄움
-  - [ ] 선택된 것이 다섯개를 넘어가면 앞에서부터 하나씩 자름
+  - [x] 선택된 언어가 1개 이상이면 SelectedLanguages 띄움
+  - [x] 선택된 것이 다섯개를 넘어가면 앞에서부터 하나씩 자름
   - [x] 데이터 통신 구현(API)
 
 - 구조
   +------------------+
-  |Selected Languages| -> confirmedList = []
+  |Selected Languages| -> langs = []
   +------------+-----+
-  |SearchInput | -> selectedIndex = 0 / input = ''
+  |SearchInput | -> value = ""
   +------------+
-  |Suggestion | -> fetchedDataList = []
+  |Suggestion | -> items = [], index = 0, inputValue = ""
   +-----------+

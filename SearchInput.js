@@ -1,12 +1,10 @@
 export default function SearchInput({ $target, onClick }) {
-  //init
   this.$element = document.createElement("form");
   this.$element.className = "SearchInput";
   this.value = "";
   $target.appendChild(this.$element);
 
   this.render = () => {
-    // console.log("SearchInput");
     this.$element.innerHTML = `<input class="SearchInput__input" type="text" placeholder="프로그램 언어를 입력하세요." value="${this.value}">`;
   };
 
@@ -25,8 +23,6 @@ export default function SearchInput({ $target, onClick }) {
     ];
     if (ignoreList.includes(e.key)) {
       e.preventDefault();
-      // TODO:
-      // cursor moving (left & right) => how to prevent?
     } else {
       onClick(e.target.value);
     }
