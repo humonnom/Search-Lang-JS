@@ -9,6 +9,7 @@ export default function Suggestion({ $target }) {
   };
 
   this.setState = (nextState) => {
+    console.log(nextState);
     this.state = {
       ...this.state,
       ...nextState,
@@ -43,9 +44,17 @@ export default function Suggestion({ $target }) {
   this.render();
 
   window.addEventListener("keyup", (e) => {
-    console.log(e.key);
-    if (this.state.items.length > 0) {
-      const index = this.state.index;
+    const { items, index } = this.state;
+    const lastIndex = items.length - 1;
+    const firstIndex = 0;
+    if (items.length > 0) {
+      if (e.key === "ArrowUp") {
+        console.log("up");
+        this.setState({ index: index === firstIndex ? lastIndex : index - 1 });
+      } else if (e.key === "ArrowDown") {
+        console.log("down");
+        this.setState({ index: index === lastIndex ? firstIndex : index + 1 });
+      }
     }
   });
 }

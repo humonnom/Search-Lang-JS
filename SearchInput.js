@@ -23,7 +23,11 @@ export default function SearchInput({ $target, onClick }) {
       "ArrowDown",
       "ArrowUp",
     ];
-    if (!ignoreList.includes(e.key)) {
+    if (ignoreList.includes(e.key)) {
+      e.preventDefault();
+      // TODO:
+      // cursor moving (left & right) => how to prevent?
+    } else {
       onClick(e.target.value);
     }
   });
